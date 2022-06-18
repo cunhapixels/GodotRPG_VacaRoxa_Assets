@@ -1,7 +1,24 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://sprites/chars/mani/mani-idle-run.png" type="Texture" id=1]
 [ext_resource path="res://source/core/Player.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=5]
+resource_name = "Attack"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.3, 0.35, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 2, 1, 0 ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"
@@ -62,10 +79,11 @@ hframes = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Walk"
+anims/Attack = SubResource( 5 )
 anims/Idle = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 anims/Walk = SubResource( 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Shape" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 5 )
 shape = SubResource( 4 )

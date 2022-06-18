@@ -3,9 +3,14 @@ extends KinematicBody2D
 const MOVE_SPEED = 120
 
 var motion = Vector2.ZERO
+var attack_delay = 0
 
 func _process(delta):
-	move()
+	attack_delay -= delta
+	if attack_delay <= 0:
+		move()
+		
+	attack()
 	move_and_slide(motion)
 
 func move():
@@ -22,3 +27,10 @@ func move():
 		get_node("AnimationPlayer").play("Idle")
 	
 	motion = MOVE_SPEED * move.normalized()
+
+func attack():
+	if Input.is_action_just_pressed("attack"):
+		attack_delay = 0.5
+		get_node("AnimationPlayer").play("Attack")
+		
+		motion = Vector2.ZERO
