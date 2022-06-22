@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+const STICK = preload("res://source/core/Stick.tscn")
 const MOVE_SPEED = 120
 
 var motion = Vector2.ZERO
@@ -32,5 +33,10 @@ func attack():
 	if Input.is_action_just_pressed("attack"):
 		attack_delay = 0.5
 		get_node("AnimationPlayer").play("Attack")
+		
+		var stick = STICK.instance()
+		stick.position = position
+		stick.motion.x = get_node("Sprite").scale.x * 200
+		get_parent().add_child(stick)
 		
 		motion = Vector2.ZERO
