@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://source/core/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/misc/Pond.tscn" type="PackedScene" id=2]
 [ext_resource path="res://sprites/atlas.png" type="Texture" id=3]
+[ext_resource path="res://source/core/Slime.tscn" type="PackedScene" id=4]
 [ext_resource path="res://sprites/props n decorations/generic-rpg-grass02.png" type="Texture" id=5]
 [ext_resource path="res://sprites/props n decorations/generic-rpg-grass01.png" type="Texture" id=6]
 [ext_resource path="res://sprites/props n decorations/generic-rpg-rock06.png" type="Texture" id=7]
@@ -91,9 +92,15 @@ texture = ExtResource( 9 )
 position = Vector2( 277, 165 )
 texture = ExtResource( 10 )
 
+[node name="Generic-rpg-rock06" type="Sprite" parent="Env"]
+position = Vector2( 79, 26 )
+texture = ExtResource( 7 )
+
 [node name="Pond" parent="." instance=ExtResource( 2 )]
 position = Vector2( 219, 53 )
 
-[node name="Generic-rpg-rock06" type="Sprite" parent="."]
-position = Vector2( 79, 26 )
-texture = ExtResource( 7 )
+[node name="Slime" parent="." instance=ExtResource( 4 )]
+position = Vector2( 182, 117 )
+
+[node name="Slime2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 31, 134 )
