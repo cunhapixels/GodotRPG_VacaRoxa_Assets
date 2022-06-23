@@ -4,6 +4,7 @@
 [ext_resource path="res://source/core/Stick.gd" type="Script" id=2]
 
 [node name="Stick" type="Area2D" groups=["Stick"]]
+scale = Vector2( 1.5, 1.5 )
 z_index = 10
 script = ExtResource( 2 )
 
@@ -11,4 +12,6 @@ script = ExtResource( 2 )
 texture = ExtResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -2, -6, 4, -9, 8, -5, 6, 1, -1, 7, -7, 3 )
+polygon = PoolVector2Array( -1.33333, -3.33333, 4, -5.33333, 6, -4, 4, -0.666667, -3.33333, 6, -7, 3 )
+
+[connection signal="body_entered" from="." to="." method="_on_Stick_body_entered"]

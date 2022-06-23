@@ -4,12 +4,19 @@ const EXPLOSION = preload("res://source/misc/Explosion.tscn")
 
 var direction = Vector2.ZERO
 var length = 0
-var hp = 2
+var hp = 5
 
-func _process(delta):
+var motion = Vector2.ZERO
+
+func _process(_delta):
 	if length > 0:
-		position += direction * length
-		length -= delta * 2
+		motion = direction * length
+		length *= 0.9
+	
+	if position.x < 0 or position.x > 320:
+		direction *= -1
+	if position.y < 0 or position.y > 180:
+		direction *= -1
 	
 	if hp <= 0:
 		var e = EXPLOSION.instance()
@@ -18,12 +25,21 @@ func _process(delta):
 		get_parent().add_child(e)
 		
 		queue_free()
+	
+	motion = move_and_slide(motion)
+	get_node("ProgressBar").value = hp * 20
 
 
 func _on_Hitbox_area_entered(area):
 	if area.is_in_group("Stick"):
 		hp -= 1
 		direction = -(area.position - position).normalized()
-		length = 1.2
+		length = 150
+		get_node("AnimationPlayer").play("Hit")
 		
-		area.queue_free()
+		#area.queue_free()
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "Hit":
+		get_node("AnimationPlayer").play("Bounce")
