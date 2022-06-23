@@ -16,7 +16,7 @@ func _process(delta):
 	
 	if length > 0:
 		motion = direction * length
-		length -= 2
+		length -= 4
 	
 	attack()
 	motion = move_and_slide(motion)
