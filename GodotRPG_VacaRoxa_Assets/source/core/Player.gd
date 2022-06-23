@@ -44,7 +44,7 @@ func attack():
 		var stick = STICK.instance()
 		stick.position = position
 		stick.motion.x = get_node("Sprite").scale.x * 150
-    
+	
 		stick.position = position + Vector2(10 * get_node("Sprite").scale.x, 0)
 		get_parent().add_child(stick)
 		

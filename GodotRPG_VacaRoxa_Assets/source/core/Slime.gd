@@ -20,16 +20,12 @@ func get_hp():
 func _ready():
 	HealthBarFG.value = hp;
 
-=======
 const EXPLOSION = preload("res://source/misc/Explosion.tscn")
 const TEXT = preload("res://source/misc/FloatingText.tscn")
 
-var direction = Vector2.ZERO
-var length = 0
-
 var motion = Vector2.ZERO
 
-func _process(_delta):
+func _process(delta):
 	if length > 0:
 		motion = direction * length
 		length *= 0.9
@@ -49,16 +45,8 @@ func _process(_delta):
 		
 	if (TXTDamage.is_visible()):
 		move_txt(delta)
-	
-
-func _on_Hitbox_area_entered(area):
-	if area.is_in_group("Stick"):
-		deal_damage(20)
 		
-		direction = -(area.position - position).normalized()
-		length = .2
-
-		area.queue_free()
+	motion = move_and_slide(motion)
 
 
 func deal_damage(damage) -> void:
@@ -87,15 +75,15 @@ func move_txt(delta) -> void:
 
 func _on_Hitbox_area_entered(area):
 	if area.is_in_group("Stick"):
-		var txt = TEXT.instance()
-		txt.position = position
-		get_parent().add_child(txt)
+		#var txt = TEXT.instance()
+		#txt.position = position
+		#get_parent().add_child(txt)
 		
-		hp -= area.damage
 		direction = -(area.position - position).normalized()
 		length = 150
 		get_node("AnimationPlayer").play("Hit")
 		
+		deal_damage(area.damage)
 		#area.queue_free()
 
 
