@@ -1,10 +1,11 @@
 extends KinematicBody2D
 
 const EXPLOSION = preload("res://source/misc/Explosion.tscn")
+const TEXT = preload("res://source/misc/FloatingText.tscn")
 
 var direction = Vector2.ZERO
 var length = 0
-var hp = 5
+var hp = 50
 
 var motion = Vector2.ZERO
 
@@ -32,7 +33,11 @@ func _process(_delta):
 
 func _on_Hitbox_area_entered(area):
 	if area.is_in_group("Stick"):
-		hp -= 1
+		var txt = TEXT.instance()
+		txt.position = position
+		get_parent().add_child(txt)
+		
+		hp -= area.damage
 		direction = -(area.position - position).normalized()
 		length = 150
 		get_node("AnimationPlayer").play("Hit")

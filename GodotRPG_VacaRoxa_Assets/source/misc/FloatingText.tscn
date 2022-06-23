@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://PICO-8 mono.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://source/misc/FloatingText.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 4
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[node name="FloatingText" type="Area2D"]
+z_index = 100
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_right = 15.0
+margin_bottom = 14.0
+theme = SubResource( 2 )
+text = "10"
+
+[node name="Tween" type="Tween" parent="."]

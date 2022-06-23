@@ -1,6 +1,7 @@
 extends Area2D
 
 var motion = Vector2.ZERO
+var damage = 10
 
 func _process(delta):
 	if position.x < 0 or position.x > 320:
