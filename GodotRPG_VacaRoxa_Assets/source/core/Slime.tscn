@@ -1,4 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://sprites/mobs/slime-blue.png" type="Texture" id=1]
+[ext_resource path="res://source/core/Slime.gd" type="Script" id=2]
+[ext_resource path="res://hud/themes/custom_theme.tres" type="Theme" id=3]
 
 [ext_resource path="res://sprites/mobs/slime-blue.png" type="Texture" id=1]
 [ext_resource path="res://source/core/Slime.gd" type="Script" id=2]
@@ -88,6 +92,24 @@ ProgressBar/colors/font_color = Color( 0, 0, 0, 1 )
 ProgressBar/styles/bg = SubResource( 6 )
 ProgressBar/styles/fg = SubResource( 7 )
 
+[sub_resource type="Gradient" id=10]
+colors = PoolColorArray( 0.589844, 0.589844, 0.589844, 1, 0.515625, 0.515625, 0.515625, 1 )
+
+[sub_resource type="GradientTexture" id=11]
+gradient = SubResource( 10 )
+
+[sub_resource type="Gradient" id=7]
+colors = PoolColorArray( 0.917969, 0.0860596, 0.0860596, 1, 0.976563, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 7 )
+
+[sub_resource type="Gradient" id=8]
+colors = PoolColorArray( 0.372549, 0.933333, 0.32549, 1, 0.398621, 1, 0.347656, 1 )
+
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 8 )
+
 [node name="Slime" type="KinematicBody2D"]
 z_index = 10
 script = ExtResource( 2 )
@@ -115,6 +137,54 @@ autoplay = "Bounce"
 anims/Bounce = SubResource( 3 )
 anims/Hit = SubResource( 5 )
 anims/RESET = SubResource( 4 )
+
+[node name="HealthBarBG2" type="TextureProgress" parent="."]
+margin_left = -10.0
+margin_top = -6.0
+margin_right = 2038.0
+margin_bottom = -3.0
+rect_scale = Vector2( 0.01, 1 )
+rect_clip_content = true
+value = 100.0
+texture_progress = SubResource( 11 )
+
+[node name="HealthBarBG" type="TextureProgress" parent="."]
+margin_left = -10.0
+margin_top = -6.0
+margin_right = 2038.0
+margin_bottom = -3.0
+rect_scale = Vector2( 0.01, 1 )
+rect_clip_content = true
+value = 100.0
+texture_progress = SubResource( 6 )
+
+[node name="HealthBarFG" type="TextureProgress" parent="."]
+margin_left = -10.0
+margin_top = -6.0
+margin_right = 2038.0
+margin_bottom = -3.0
+rect_scale = Vector2( 0.01, 1 )
+rect_clip_content = true
+value = 100.0
+texture_progress = SubResource( 9 )
+
+[node name="TXTDamage" type="RichTextLabel" parent="."]
+visible = false
+margin_left = -4.0
+margin_top = -14.0
+margin_right = 14.0
+margin_bottom = 2.0
+rect_scale = Vector2( 0.5, 0.5 )
+theme = ExtResource( 3 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 1
+bbcode_text = "20"
+tab_size = 1
+text = "20"
+fit_content_height = true
+scroll_active = false
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 visible = false

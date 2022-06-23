@@ -1,0 +1,15 @@
+[gd_resource type="Theme" load_steps=4 format=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.113725, 0.792157, 0.219608, 1 )
+
+[sub_resource type="BitmapFont" id=3]
+height = 7.0
+
+[resource]
+ProgressBar/colors/font_color = Color( 1, 1, 1, 1 )
+ProgressBar/styles/bg = SubResource( 1 )
+ProgressBar/styles/fg = SubResource( 2 )
+RichTextLabel/fonts/bold_font = SubResource( 3 )

@@ -1,11 +1,31 @@
 extends KinematicBody2D
 
+
+var direction = Vector2.ZERO
+var length = 0
+var hp = 100 setget set_hp, get_hp
+
+
+onready var HealthBarFG = $HealthBarFG
+onready var HealthBarBG = $HealthBarBG
+onready var TXTDamage = $TXTDamage
+
+
+func set_hp(value):
+	hp += value
+
+func get_hp():
+	return hp
+
+func _ready():
+	HealthBarFG.value = hp;
+
+=======
 const EXPLOSION = preload("res://source/misc/Explosion.tscn")
 const TEXT = preload("res://source/misc/FloatingText.tscn")
 
 var direction = Vector2.ZERO
 var length = 0
-var hp = 50
 
 var motion = Vector2.ZERO
 
@@ -26,6 +46,40 @@ func _process(_delta):
 		get_parent().add_child(e)
 		
 		queue_free()
+		
+	if (TXTDamage.is_visible()):
+		move_txt(delta)
+	
+
+func _on_Hitbox_area_entered(area):
+	if area.is_in_group("Stick"):
+		deal_damage(20)
+		
+		direction = -(area.position - position).normalized()
+		length = .2
+
+		area.queue_free()
+
+
+func deal_damage(damage) -> void:
+	set_hp(-damage)
+	HealthBarFG.value = get_hp();
+	show_hide_txt(true)
+	yield(get_tree().create_timer(0.35), "timeout")
+	show_hide_txt(false)
+	HealthBarBG.value = get_hp();
+
+
+func show_hide_txt(visible) -> void:
+	TXTDamage.set_position(Vector2(-4,-14))
+	TXTDamage.visible = visible
+
+
+func move_txt(delta) -> void:
+	TXTDamage.set_position(
+		lerp(TXTDamage.get_position(), 
+		Vector2(rand_range(-10, 10), rand_range(10, 20)), 
+		delta))
 	
 	motion = move_and_slide(motion)
 	get_node("ProgressBar").value = hp * 20

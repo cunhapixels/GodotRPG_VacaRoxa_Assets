@@ -16,7 +16,7 @@ func _process(delta):
 	
 	if length > 0:
 		motion = direction * length
-		length -= 10
+		length -= 2
 	
 	attack()
 	motion = move_and_slide(motion)
@@ -42,8 +42,10 @@ func attack():
 		get_node("AnimationPlayer").play("Attack")
 		
 		var stick = STICK.instance()
+		stick.position = position
+		stick.motion.x = get_node("Sprite").scale.x * 150
+    
 		stick.position = position + Vector2(10 * get_node("Sprite").scale.x, 0)
-		stick.motion.x = get_node("Sprite").scale.x * 200
 		get_parent().add_child(stick)
 		
 		motion = Vector2.ZERO
@@ -53,7 +55,7 @@ func _on_Hurtbox_area_entered(area):
 	if area.is_in_group("Enemy"):
 		#TODO: Add life decrease
 		direction = (position - area.get_parent().position).normalized()
-		length = 180
+		length = 100
 	if area.is_in_group("Stick"):
 		direction = -(area.position - position).normalized()
-		length = 80
+		length = 20
