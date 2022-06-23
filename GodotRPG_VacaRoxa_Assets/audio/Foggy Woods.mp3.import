@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Foggy Woods.mp3-fcb8746fbb106135526cfaf0149cbca6.mp3str"
+
+[deps]
+
+source_file="res://audio/Foggy Woods.mp3"
+dest_files=[ "res://.import/Foggy Woods.mp3-fcb8746fbb106135526cfaf0149cbca6.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

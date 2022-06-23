@@ -19,7 +19,7 @@ func _process(delta):
 		length -= 2
 	
 	attack()
-	move_and_slide(motion)
+	motion = move_and_slide(motion)
 
 func move():
 	var move = Vector2.ZERO
@@ -44,6 +44,8 @@ func attack():
 		var stick = STICK.instance()
 		stick.position = position
 		stick.motion.x = get_node("Sprite").scale.x * 150
+    
+		stick.position = position + Vector2(10 * get_node("Sprite").scale.x, 0)
 		get_parent().add_child(stick)
 		
 		motion = Vector2.ZERO
