@@ -41,6 +41,7 @@ func _process(delta):
 		e.emitting = true
 		get_parent().add_child(e)
 		
+		get_parent().get_parent().get_node("Camera").get_node("AnimationPlayer").play("Shake")
 		queue_free()
 		
 	if (TXTDamage.is_visible()):

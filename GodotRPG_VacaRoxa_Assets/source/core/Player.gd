@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 const STICK = preload("res://source/core/Stick.tscn")
+const TEXT = preload("res://source/misc/FloatingText.tscn")
 const MOVE_SPEED = 120
 
 var motion = Vector2.ZERO
@@ -56,6 +57,12 @@ func _on_Hurtbox_area_entered(area):
 		#TODO: Add life decrease
 		direction = (position - area.get_parent().position).normalized()
 		length = 100
+		
+		var txt = TEXT.instance()
+		txt.position = position
+		get_parent().add_child(txt)
+		
+		get_parent().get_node("Camera").get_node("AnimationPlayer").play("Shake")
 	if area.is_in_group("Stick"):
 		direction = -(area.position - position).normalized()
 		length = 20
