@@ -1,15 +1,15 @@
 extends KinematicBody2D
 
-
 var direction = Vector2.ZERO
 var length = 0
 var hp = 100 setget set_hp, get_hp
+export var red : bool
 
+const SPEED = 45
 
 onready var HealthBarFG = $HealthBarFG
 onready var HealthBarBG = $HealthBarBG
 onready var TXTDamage = $TXTDamage
-
 
 func set_hp(value):
 	hp += value
@@ -19,6 +19,9 @@ func get_hp():
 
 func _ready():
 	HealthBarFG.value = hp;
+	
+	if red:
+		get_node("Sprite").texture = load("res://sprites/mobs/slime-orange.png")
 
 const EXPLOSION = preload("res://source/misc/Explosion.tscn")
 const TEXT = preload("res://source/misc/FloatingText.tscn")
@@ -46,6 +49,9 @@ func _process(delta):
 		
 	if (TXTDamage.is_visible()):
 		move_txt(delta)
+		
+	if red:
+		move_to("../../Player")
 		
 	motion = move_and_slide(motion)
 
@@ -91,3 +97,9 @@ func _on_Hitbox_area_entered(area):
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "Hit":
 		get_node("AnimationPlayer").play("Bounce")
+	
+func move_to(path: String):
+	var target_pos = get_node(path).position
+	var dir = (target_pos - position).normalized()
+	motion = dir * SPEED
+	

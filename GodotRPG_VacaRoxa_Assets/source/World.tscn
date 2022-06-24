@@ -122,9 +122,11 @@ position = Vector2( 58, 139 )
 
 [node name="Slime5" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( 157, 43 )
+red = true
 
 [node name="Slime6" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 199, 134 )
+position = Vector2( 204, 121 )
+red = true
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 48, 64 )
