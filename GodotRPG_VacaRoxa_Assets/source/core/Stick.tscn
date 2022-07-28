@@ -11,7 +11,7 @@ script = ExtResource( 2 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="TargetCheck" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -1.33333, -3.33333, 4, -5.33333, 6, -4, 4, -0.666667, -3.33333, 6, -7, 3 )
 
 [connection signal="body_entered" from="." to="." method="_on_Stick_body_entered"]

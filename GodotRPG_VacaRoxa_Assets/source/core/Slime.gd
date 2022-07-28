@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 var direction = Vector2.ZERO
 var length = 0
+var z = 0.1
+var z_speed = 3
 var hp = 100 setget set_hp, get_hp
 export var red : bool
 
@@ -19,6 +21,8 @@ func get_hp():
 
 func _ready():
 	HealthBarFG.value = hp;
+	direction = (position - get_parent().get_parent().get_node("Pond").position).normalized()
+	length = 250
 	
 	if red:
 		get_node("Sprite").texture = load("res://sprites/mobs/slime-orange.png")
@@ -52,7 +56,16 @@ func _process(delta):
 		
 	if red:
 		move_to("../../Player")
-		
+	
+	z += z_speed
+	z_speed -= 0.2
+	if z > 0:
+		get_node("CollisionShape2D").disabled = true
+	else:
+		get_node("CollisionShape2D").disabled = false
+		z = 0
+	
+	get_node("Sprite").position.y = -z
 	motion = move_and_slide(motion)
 
 
