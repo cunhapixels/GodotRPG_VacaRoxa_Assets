@@ -1,7 +1,5 @@
 extends KinematicBody2D
 
-const STICK = preload("res://source/core/Stick.tscn")
-const TEXT = preload("res://source/misc/FloatingText.tscn")
 const MOVE_SPEED = 120
 
 var motion = Vector2.ZERO
@@ -42,7 +40,7 @@ func attack():
 		attack_delay = 0.5
 		get_node("AnimationPlayer").play("Attack")
 		
-		var stick = STICK.instance()
+		var stick = globals.STICK.instance()
 		stick.position = position
 		stick.motion.x = get_node("Sprite").scale.x * 150
 	
@@ -58,7 +56,7 @@ func _on_Hurtbox_area_entered(area):
 		direction = (position - area.get_parent().position).normalized()
 		length = 100
 		
-		var txt = TEXT.instance()
+		var txt = globals.TEXT.instance()
 		txt.position = position
 		get_parent().add_child(txt)
 		

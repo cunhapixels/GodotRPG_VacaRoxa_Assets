@@ -14,6 +14,10 @@ config/name="GodotRPG_VacaRoxa_Assets"
 run/main_scene="res://source/World.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+globals="*res://source/core/globals.gd"
+
 [display]
 
 window/size/width=320

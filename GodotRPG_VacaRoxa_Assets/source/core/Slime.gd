@@ -27,9 +27,6 @@ func _ready():
 	if red:
 		get_node("Sprite").texture = load("res://sprites/mobs/slime-orange.png")
 
-const EXPLOSION = preload("res://source/misc/Explosion.tscn")
-const TEXT = preload("res://source/misc/FloatingText.tscn")
-
 var motion = Vector2.ZERO
 
 func _process(delta):
@@ -43,7 +40,7 @@ func _process(delta):
 		direction *= -1
 	
 	if hp <= 0:
-		var e = EXPLOSION.instance()
+		var e = globals.EXPLOSION.instance()
 		e.position = position
 		e.emitting = true
 		get_parent().add_child(e)
@@ -72,9 +69,10 @@ func _process(delta):
 func deal_damage(damage) -> void:
 	set_hp(-damage)
 	HealthBarFG.value = get_hp();
-	show_hide_txt(true)
-	yield(get_tree().create_timer(0.35), "timeout")
-	show_hide_txt(false)
+	if get_hp() > 0:
+		show_hide_txt(true)
+		yield(get_tree().create_timer(0.35), "timeout")
+		show_hide_txt(false)
 	HealthBarBG.value = get_hp();
 
 
