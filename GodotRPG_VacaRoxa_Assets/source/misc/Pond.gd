@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 func _on_Timer_timeout():
-	if get_parent().get_node("Enemies").get_child_count() < 3:
+	if get_parent().get_node("Enemies").get_child_count() < 3 and !get_node("%MainMenu"):
 		var slime = globals.PRE_SLIME.instance()
 		slime.position = position
 		

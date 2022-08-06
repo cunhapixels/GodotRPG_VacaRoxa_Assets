@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://PICO-8 mono.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://source/core/MainMenu.tres" type="StyleBox" id=2]
+[ext_resource path="res://source/core/MainMenu.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.0627451, 0.168627, 0.270588, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+expand_margin_top = 4.0
+expand_margin_bottom = 4.0
+shadow_size = 1
+shadow_offset = Vector2( 0, 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 8
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=3]
+default_font = SubResource( 2 )
+Button/styles/hover = ExtResource( 2 )
+Button/styles/normal = ExtResource( 2 )
+Button/styles/pressed = SubResource( 4 )
+
+[sub_resource type="DynamicFont" id=5]
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=6]
+Label/fonts/font = SubResource( 5 )
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 116.0
+margin_top = 109.0
+margin_right = 196.0
+margin_bottom = 119.0
+theme = SubResource( 3 )
+text = "START GAME"
+
+[node name="Label" type="Label" parent="."]
+margin_left = 124.0
+margin_top = 15.0
+margin_right = 188.0
+margin_bottom = 35.0
+theme = SubResource( 6 )
+text = "GAME"
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

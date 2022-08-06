@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://source/core/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/misc/Pond.tscn" type="PackedScene" id=2]
 [ext_resource path="res://sprites/atlas.png" type="Texture" id=3]
+[ext_resource path="res://source/core/MainMenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://sprites/props n decorations/generic-rpg-grass02.png" type="Texture" id=5]
 [ext_resource path="res://sprites/props n decorations/generic-rpg-grass01.png" type="Texture" id=6]
 [ext_resource path="res://sprites/props n decorations/generic-rpg-rock06.png" type="Texture" id=7]
@@ -110,6 +111,13 @@ tracks/0/keys = {
 }
 
 [node name="World" type="Node2D"]
+
+[node name="MainMenu" parent="." instance=ExtResource( 4 )]
+unique_name_in_owner = true
+margin_left = 88.0
+margin_top = 4.0
+margin_right = 88.0
+margin_bottom = 4.0
 
 [node name="Enemies" type="Node" parent="."]
 
